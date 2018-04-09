@@ -161,7 +161,6 @@ foreach($biodata as $u){
 	<td><?php echo $u->penyanyi ?></td>
 	<td><?php echo $u->deskripsi ?></td>
 	
-	<td><img src="<?php echo base_url() . 'assets/img/'.$u->gambar ?>"/></td>
 	</tr>
 	<?php } ?>
 	</table>

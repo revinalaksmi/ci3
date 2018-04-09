@@ -55,12 +55,12 @@
 				<div class="container">
 					<div class="row fullscreen d-flex align-items-center justify-content-start">
 						<div class="banner-content col-lg-7">
-							<h5 class="text-white text-uppercase"><?php echo $address?></h5>
+							<h5 class="text-white text-uppercase">Welcome to My Blog</h5>
 							<h1 class="text-uppercase">
-								 <?php echo $name['firstname']  ?>	
+								 Revina's Blog
 							</h1>
 							<p class="text-white pt-20 pb-20">
-								MUSIC IDEAS!
+								SONG IDEAS!
 							</p>
 						</div>
 						<div class="col-lg-5 banner-right">
@@ -82,7 +82,7 @@
 						</div>
 						<div class="col-lg-6 col-md-12 no-padding info-rigth">
 							<div class="info-content">
-								<h2 class="pb-30"><?php echo $name['firstname'], $name['lastname']?></h2>
+								<h2 class="pb-30">Revina Laksmi</h2>
 								<p>
 									My name is Revina Laksmi. I was born in Malang, 28th 1998. Listening music is one my lovely activities. Everyone have a different kind of favorite songs. For me, korean songs is the best. So, you can find my korean favorites songs and listening it too. Hope you enjoy it!							
 								</p>
@@ -93,7 +93,36 @@
 				</div>
 			</section>
 			<!-- End about Area -->
-
+			<div class="container">
+			 <table class="table table-hover">
+            <thread>
+                <th >Id</th>
+                <th >Title</th>
+                <th>Singer</th>
+                <th >Year</th>
+                <th align="center">Images</th>
+                <th >Action</th>
+            </tr>
+        </thread>
+        <tbody>
+         <?php foreach($result as $d){ ?>
+            <tr>
+                <td><?php echo $d['id']; ?></td>
+                <td><?php echo $d['judul']; ?></td>
+                <td><?php echo $d['penyanyi']; ?></td>
+                <td><?php echo $d['tahun_rilis']; ?></td>
+                <td><img width="95" height="105"src="<?php echo base_url('assets/img/'.$d['gambar']); ?>"></td>
+                 <td>
+                    <a href="<?php echo base_url()."biodata/do_preview/".$d['id']; ?>">Preview</a>
+                </td>
+            </tr>
+        </tbody>
+           <?php } ?> 
+            
+                </td>
+        </table>
+        <p align="center"><a align="center" href="<?php echo base_url()."biodata/add_data/"; ?>">Tambah</a> </p>
+        </div>
 		
 			<!-- Start fact Area -->
 			<section class="fact-area relative section-gap" id="fact">
@@ -117,25 +146,25 @@
 						<div class="col-lg-3 col-dmd-6">
 							<div class="single-counter">
 								<h1 class="counter">5892</h1>
-								<p><?php echo $song['a'] ?></p>								
+								<p>Red Flavor - Red Velvet</p>								
 							</div>
 						</div>
 						<div class="col-lg-3 col-md-6">
 							<div class="single-counter">
 								<h1 class="counter">5509</h1>
-								<p><?php echo $song['b'] ?></p>								
+								<p>You and Me - KARD</p>								
 							</div>
 						</div>
 						<div class="col-lg-3 col-md-6">
 							<div class="single-counter">
 								<h1 class="counter">5059</h1>
-								<p><?php echo $song['c'] ?></p>								
+								<p>Good Boy - BigBang</p>								
 							</div>
 						</div>
 						<div class="col-lg-3 col-md-6">
 							<div class="single-counter">
 								<h1 class="counter">4999</h1>
-								<p>P<?php echo $song['d'] ?></p>								
+								<p>I I Yo - Gummy</p>								
 							</div>
 						</div>												
 					</div>
@@ -200,7 +229,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 						<div class="col-lg-5  col-md-6 col-sm-6">
 							<div class="single-footer-widget">
 								<h6>Email</h6>
-								<p><?php echo $email ?></p>
+								<p>revinaaniver@gmail.com</p>
 							</div>
 						</div>						
 						<div class="col-lg-2 col-md-6 col-sm-6 social-widget">
