@@ -57,7 +57,7 @@ class Biodata extends CI_Controller {
 			
 			if($res>=1){
 				$this->session->set_flashdata('pesan','Tambah Data Sukses');
-				redirect('biodata/home2');
+				redirect('biodata');
 			}else{
 				echo "<h2>Insert Data Gagal</h2>";	
 			}
