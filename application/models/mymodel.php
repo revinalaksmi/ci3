@@ -20,4 +20,20 @@ class Mymodel extends CI_Model {
 		$res = $this->db->insert($tabelNama,$data);
 		return $res;
 		}
+		
+	public function DeleteData($tabelNama,$where){
+		$res = $this->db->delete($tabelNama,$where);
+		return $res;
+		}
+
+	public function getedit($id=''){
+		$data = $this->db->query('SELECT id,judul,penyanyi,tahun_rilis,deskripsi,gambar FROM biodata where id = '.$id);
+		return $data->result_array();
+	}
+
+	public function UpdateData($tabelNama,$data,$where){
+		$res = $this->db->update($tabelNama,$data,$where);
+		return $res;
+		}
+
 }

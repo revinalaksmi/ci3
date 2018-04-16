@@ -113,7 +113,9 @@
                 <td><?php echo $d['tahun_rilis']; ?></td>
                 <td><img width="95" height="105"src="<?php echo base_url('assets/img/'.$d['gambar']); ?>"></td>
                  <td>
-                    <a href="<?php echo base_url()."biodata/do_preview/".$d['id']; ?>">Preview</a>
+                    <p><a href="<?php echo base_url()."biodata/do_preview/".$d['id']; ?>">Preview</a></p>
+                    <p><a href="<?php echo base_url()."biodata/edit_data/".$d['id']; ?>">Update</a></p>
+                    <p><a href="<?php echo base_url()."biodata/do_delete/".$d['id']; ?>">Delete</a></p>
                 </td>
             </tr>
         </tbody>
@@ -122,6 +124,7 @@
                 </td>
         </table>
         <p align="center"><a align="center" href="<?php echo base_url()."biodata/add_data/"; ?>">Tambah</a> </p>
+
         </div>
 		
 			<!-- Start fact Area -->
