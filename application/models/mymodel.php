@@ -11,6 +11,15 @@ class Mymodel extends CI_Model {
 	
 		return $data->result_array();
 	}
+	 public function get_artikel_by_id($id)
+    {
+        // Inner Join dengan table Categories
+       // $this->db->join('categories', 'categories.id = blogs.cat_id');
+
+    	$query = $this->db->get_where('biodata', array('biodata.id' => $id));
+    	            
+		return $query->row();
+    }
 	public function GetPreview($id=''){
 		$isi = $this->db->query('SELECT id,judul,penyanyi,tahun_rilis,deskripsi,gambar FROM biodata where id = '.$id);
 		return $isi->result_array();

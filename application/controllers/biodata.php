@@ -20,6 +20,19 @@ class Biodata extends CI_Controller {
 	}
 
 	public function do_insert(){
+		$this->load->model('mymodel');
+
+		// Kita validasi input sederhana, sila cek http://localhost/ci3/user_guide/libraries/form_validation.html
+	    $this->form_validation->set_rules('judul', 'Title', 'required');
+	    $this->form_validation->set_rules('penyanyi', 'Singer', 'required');
+	    $this->form_validation->set_rules('tahun_rilis', 'Released', 'required');
+	    $this->form_validation->set_rules('deskripsi', 'Descripstion', 'required');
+	    // Cek apakah input valid atau tidak
+	    if ($this->form_validation->run() === FALSE)
+	    {
+	        $this->load->view('form_add');
+	    }
+
 		$config['upload_path']          = 'assets/img/';
         $config['allowed_types']        = 'gif|jpg|png';
         $config['max_size']             = 1000;
@@ -30,9 +43,7 @@ class Biodata extends CI_Controller {
 
         if ( ! $this->upload->do_upload('userfile'))
         {
-                $error = array('error' => $this->upload->display_errors());
-
-               print_r($error);
+                $data['upload_error'] = $this->upload->display_errors();
         }
         else
         {
@@ -52,7 +63,7 @@ class Biodata extends CI_Controller {
 									'gambar'		=> $gambar
 								);
 
-			$this->load->model('mymodel');
+			
 			$res = $this->mymodel->InsertData('biodata', $data_insert);
 			
 			if($res>=1){
@@ -64,10 +75,9 @@ class Biodata extends CI_Controller {
         }
 	}
 
-	//nyoba2
-
 	public function edit_data($id='',$gambar=''){
 		$this->load->model('mymodel');
+
 		$biodata = $this->mymodel->getedit($id);
 		$data = array(
 			"id" 			=> $biodata[0]['id'],
@@ -81,7 +91,35 @@ class Biodata extends CI_Controller {
 	}
 
 	public function do_update(){
-		$config['upload_path']          = 'assets/img/';
+		$this->load->model('mymodel');
+		
+		$data['biodata'] = $this->mymodel->getedit($id);
+
+		$this->form_validation->set_rules('judul','Judul','required|is_unique[biodata.judul]',
+			array(
+					'required' => 'Judul kosong, isi dulu',
+					'is_unique' => 'Judul' .$this->input->post('judul'). ' sudah ada.'));
+
+		$this->form_validation->set_rules('penyanyi','Penyanyi','required|is_unique[biodata.penyanyi]',
+			array(
+					'required' => 'Penyanyi kosong, isi dulu',
+					'is_unique' => 'Penyanyi' .$this->input->post('penyanyi'). ' sudah ada.'));
+
+		$this->form_validation->set_rules('tahun_rilis','Tahun Rilis','required',
+			array(
+					'required' => 'Tahun rilis kosong, isi dulu'));
+
+		$this->form_validation->set_rules('deskripsi','Deskripsi','required|is_unique[biodata.deskripsi]',
+			array(
+					'required' => 'Deskripsi kosong, isi dulu',
+					'is_unique' => 'Deskripsi' .$this->input->post('deskripsi'). ' sudah ada.'));
+
+		if ($this->form_validation->run() === FALSE)
+	    {
+	        $this->load->view('v_edit', $data);
+	    }
+	    else{
+	    	$config['upload_path']          = 'assets/img/';
         $config['allowed_types']        = 'gif|jpg|png';
         $config['max_size']             = 1000;
         $config['max_width']            = 1024;
@@ -91,9 +129,7 @@ class Biodata extends CI_Controller {
 
         if ( ! $this->upload->do_upload('userfile'))
         {
-                $error = array('error' => $this->upload->display_errors());
-
-               print_r($error);
+            $data['upload_error'] = $this->upload->display_errors();
         }
         else
         {
@@ -119,6 +155,8 @@ class Biodata extends CI_Controller {
 				redirect('biodata');
 			}
 		}
+	    }
+		
 	}
 
 	public function do_delete($id){

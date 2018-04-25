@@ -47,7 +47,7 @@
                 </div>
               </header>
 
-<section class="banner-area" id="home"> 
+            <section class="banner-area" id="home"> 
                 <div class="container">
                     <div class="row fullscreen d-flex align-items-center justify-content-start">
                         <div class="banner-content col-lg-7">
@@ -58,46 +58,48 @@
                         </div>
                         <div class="col-lg-5 banner-right">
                             
-        
-       <?php echo form_open_multipart('biodata/do_update', 'id="id"')?>
-       <form >
-       <table>
-        
-            <tr>
-                
-                <td><input type="hidden" name="id" value="<?php echo $id; ?>"></td>
-            </tr>
-            <tr>
-                <td class="text-white">Title</td>
-               <td><input type="text" name="judul" value="<?php echo $judul ?>"></td>
-            </tr>
-            <tr>
-                <td class="text-white">Singer</td>
-                <td><input type="text" name="penyanyi" value="<?php echo $penyanyi ?>"></td>
-            </tr>
-            <tr>
-                <td class="text-white">Release</td>
-                <td><input type="date" name="tahun_rilis" value="<?php echo $tahun_rilis ?>"></td>
+                 <?php    
+                        $this->form_validation->set_error_delimiters('<div class="alert alert-warning" role="alert">', '</div>');
+                    ?>
+                    <?php echo validation_errors(); ?>
 
-            </tr>
-            <tr>
-                <td class="text-white">Description</td>
-                <td><input type="text" name="deksripsi" value="<?php echo $deskripsi ?>"></td>
-            </tr>
+                    <?php echo (isset( $upload_error)) ? '<div class="alert alert-warning" role="alert">' .$upload_error. '</div>' : ''; ?>
+                 <?php echo form_open_multipart('biodata/do_update', 'id="id"')?>
+               <form >
+                <table>
+                        <tr>                            
+                            <td><input type="hidden" name="id" value="<?php echo $id; ?>"></td>
+                        </tr>
+                        <tr>
+                            <td class="text-white">Title</td>
+                           <td><input type="text" name="judul" id="judul" value="<?php echo set_value('judul',$judul); ?>"></td>
+                        </tr>
+                        <tr>
+                            <td class="text-white">Singer</td>
+                            <td><input type="text" name="penyanyi" id="penyanyi" value="<?php echo set_value('penyanyi',$penyanyi); ?>"></td>
+                        </tr>
+                        <tr>
+                            <td class="text-white">Release</td>
+                            <td><input type="date" name="tahun_rilis" id="tahun_rilis" value="<?php echo set_value('tahun_rilis',$tahun_rilis); ?>"></td>
 
-            <tr>
-                <td class="text-white">Image</td>
-                <td><input type="file" name="userfile" size="20" ></td>
-            </tr>
-            
-            <tr>
-                <td>
-                </td>
-                <td><input type="submit" name="btnSubmit" value="Simpan"/></td>
-            </tr>
-            </table>
-        </form>
-        
+                        </tr>
+                        <tr>
+                            <td class="text-white">Description</td>
+                            <td><input type="text" name="deksripsi" id="deskripsi" value="<?php echo set_value('deksripsi',$deskripsi); ?>"></td>
+                        </tr>
+
+                        <tr>
+                            <td class="text-white">Image</td>
+                            <td><input type="file" name="userfile" <?php echo $gambar ?> size="20" ></td>
+                        </tr>
+                        
+                        <tr>
+                            <td>
+                            </td>
+                            <td><input type="submit" name="btnSubmit" id="btnSubmit" value="Simpan"/></td>
+                        </tr>
+                    </table>
+                 </form>
             </div>                                              
         </div>
     </div>

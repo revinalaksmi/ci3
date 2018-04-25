@@ -61,7 +61,7 @@
                 </tr>
              <td><img src="<?php echo base_url('assets/img/'.$data['gambar']); ?>"></td>
                 <td><?php echo $data['deskripsi']; ?></td>
-               			
+               		<p><a href="<?php echo base_url()."biodata/edit_data/".$data['id']; ?>">Update</a></p>	
 			
 		<?php } ?>
         <p align="center">

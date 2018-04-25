@@ -47,7 +47,7 @@
                 </div>
               </header>
 
-<section class="banner-area" id="home"> 
+            <section class="banner-area" id="home"> 
                 <div class="container">
                     <div class="row fullscreen d-flex align-items-center justify-content-start">
                         <div class="banner-content col-lg-7">
@@ -57,40 +57,46 @@
                             </h1>
                         </div>
                         <div class="col-lg-5 banner-right">
+                        <?php    
+                        $this->form_validation->set_error_delimiters('<div class="alert alert-warning" role="alert">', '</div>');
+                         ?>
+                
+                        <?php echo validation_errors(); ?>
+                        <?php echo (isset( $upload_error)) ? '<div class="alert alert-warning" role="alert">' .$upload_error. '</div>' : ''; ?>
                             <?php echo form_open_multipart('biodata/do_insert'); ?>
-       <form>
-        <table>
-            <tr>
-                <td class="text-white">Title</td>
-               <td><input type="text" name="judul"/></td>
-            </tr>
-            <tr>
-                <td class="text-white">Singer</td>
-                <td><input type="text" name="penyanyi"/></td>
-            </tr>
-            <tr>
-                <td class="text-white">Release</td>
-                <td><input type="date" name="tahun_rilis"/></td>
+               <form>
+                <table>
+                    <tr>
+                        <td class="text-white">Title</td>
+                       <td><input type="text" name="judul" value="<?php echo set_value('judul')?>" ></td>
+                    </tr>
+                    <tr>
+                        <td class="text-white">Singer</td>
+                        <td><input type="text" name="penyanyi" value="<?php echo set_value('penyanyi')?>"></td>
+                    </tr>
+                    <tr>
+                        <td class="text-white">Release</td>
+                        <td><input type="date" name="tahun_rilis" value="<?php echo set_value('tahun_rilis')?>"></td>
 
-            </tr>
-            <tr>
-                <td class="text-white">Description</td>
-                <td><textarea name="deskripsi"></textarea></td>
-            </tr>
+                    </tr>
+                    <tr>
+                        <td class="text-white">Description</td>
+                        <td><textarea name="deskripsi" value="<?php echo set_value('deskripsi')?>"></textarea></td>
+                    </tr>
 
-            <tr>
-                <td class="text-white">Image</td>
-                <td><input type="file" name="userfile" size="20" /></td>
-            </tr>
-            
-            <tr>
-                <td>
-                </td>
-                <td><input type="submit" name="btnSubmit" value="Simpan"/></td>
-            </tr>
-           
-        </table>
-        </form>
+                    <tr>
+                        <td class="text-white">Image</td>
+                        <td><input type="file" name="userfile" size="20" /></td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                        </td>
+                        <td><input type="submit" name="btnSubmit" value="Simpan"/></td>
+                    </tr>
+                   
+                </table>
+                </form>
                         </div>                                              
                     </div>
                 </div>
@@ -105,7 +111,7 @@
           
             <script src="<?php echo base_url('./assets/js/vendor/jquery-2.2.4.min.js'); ?>"></script>
             <script src="<?php echo base_url('./assets/js/vendor/bootstrap.min.js'); ?>"></script>           
-            <script type="<?php echo base_url('./assets/text/javascript'); ?>" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhOdIF3Y9382fqJYt5I_sswSrEw5eihAA"></script>
+            <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhOdIF3Y9382fqJYt5I_sswSrEw5eihAA"></script>
             <script src="<?php echo base_url('./assets/js/easing.min.js'); ?>"></script>         
             <script src="<?php echo base_url('./assets/js/hoverIntent.js'); ?>"></script>
             <script src="<?php echo base_url('./assets/js/superfish.min.js'); ?>"></script>  
@@ -118,7 +124,8 @@
             <script src="<?php echo base_url('./assets/js/waypoints.min.js'); ?>"></script>
             <script src="<?php echo base_url('./assets/js/jquery.counterup.min.js'); ?>"></script>           
             <script src="<?php echo base_url('./assets/js/mail-script.js'); ?>"></script>    
-            <script src="<?php echo base_url('./assets/js/main.js'); ?>"></script>   
+            <script src="<?php echo base_url('./assets/js/main.js'); ?>"></script>  
+            <script src="<?php echo base_url('./assets/js/custom.js'); ?>"></script>   
         </body>
     </html>
 

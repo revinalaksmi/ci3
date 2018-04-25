@@ -93,6 +93,9 @@
 				</div>
 			</section>
 			<!-- End about Area -->
+			<div class="title text-center">
+								<h1 class="mb-10">List Song for This Week</h1>
+							</div>
 			<div class="container">
 			 <table class="table table-hover">
             <thread>
@@ -114,8 +117,8 @@
                 <td><img width="95" height="105"src="<?php echo base_url('assets/img/'.$d['gambar']); ?>"></td>
                  <td>
                     <p><a href="<?php echo base_url()."biodata/do_preview/".$d['id']; ?>">Preview</a></p>
-                    <p><a href="<?php echo base_url()."biodata/edit_data/".$d['id']; ?>">Update</a></p>
-                    <p><a href="<?php echo base_url()."biodata/do_delete/".$d['id']; ?>">Delete</a></p>
+                    
+                    <p><a href="<?php echo base_url()."biodata/do_delete/".$d['id']; ?>">Delete</a>
                 </td>
             </tr>
         </tbody>
