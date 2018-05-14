@@ -3,25 +3,25 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Mymodel extends CI_Model {
 	
-	public function GetArtikel(){
-		
-		$this->db->select('id,judul,penyanyi,tahun_rilis,deskripsi,gambar');
-		$this->db->from('biodata');
-		$data=$this->db->get();
-	
+	public function GetArtikel($limit = FALSE, $offset = FALSE ){
+		if ( $limit ) {
+           $this->db->limit($limit, $offset);
+      	}
+		$this->db->join('kategori', 'biodata.id_ktg =kategori.id');
+		$data = $this->db->get('biodata');
 		return $data->result_array();
 	}
-	 public function get_artikel_by_id($id)
-    {
-        // Inner Join dengan table Categories
-       // $this->db->join('categories', 'categories.id = blogs.cat_id');
 
-    	$query = $this->db->get_where('biodata', array('biodata.id' => $id));
-    	            
-		return $query->row();
-    }
+	public function get_total() {
+    	return $this->db->count_all("biodata");
+   	}
+
+	 
 	public function GetPreview($id=''){
-		$isi = $this->db->query('SELECT id,judul,penyanyi,tahun_rilis,deskripsi,gambar FROM biodata where id = '.$id);
+		$this->db->join('kategori', 'kategori.id = biodata.id_ktg');
+
+    	$isi = $this->db->get_where('biodata', array('biodata.id' => $id));
+    	            
 		return $isi->result_array();
 	}
 
@@ -36,7 +36,7 @@ class Mymodel extends CI_Model {
 		}
 
 	public function getedit($id=''){
-		$data = $this->db->query('SELECT id,judul,penyanyi,tahun_rilis,deskripsi,gambar FROM biodata where id = '.$id);
+		$data = $this->db->query('SELECT id,judul,penyanyi,id_ktg,tahun_rilis,deskripsi,gambar FROM biodata where id = '.$id);
 		return $data->result_array();
 	}
 

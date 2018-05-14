@@ -43,6 +43,7 @@
 				          <li><a href="#about">About</a></li>
 				          <li><a href="#fact">Rank</a></li>
 				          <li><a href="#videos">Videos</a></li>
+				          <li><a href="<?php echo base_url()."kategori"; ?>">Categories</a></li>
 				        </ul>
 				      </nav><!-- #nav-menu-container -->		    		
 			    	</div>
@@ -93,42 +94,47 @@
 				</div>
 			</section>
 			<!-- End about Area -->
-			<div class="title text-center">
-								<h1 class="mb-10">List Song for This Week</h1>
-							</div>
-			<div class="container">
-			 <table class="table table-hover">
-            <thread>
-                <th >Id</th>
-                <th >Title</th>
-                <th>Singer</th>
-                <th >Year</th>
-                <th align="center">Images</th>
-                <th >Action</th>
-            </tr>
-        </thread>
-        <tbody>
-         <?php foreach($result as $d){ ?>
-            <tr>
-                <td><?php echo $d['id']; ?></td>
-                <td><?php echo $d['judul']; ?></td>
-                <td><?php echo $d['penyanyi']; ?></td>
-                <td><?php echo $d['tahun_rilis']; ?></td>
-                <td><img width="95" height="105"src="<?php echo base_url('assets/img/'.$d['gambar']); ?>"></td>
-                 <td>
-                    <p><a href="<?php echo base_url()."biodata/do_preview/".$d['id']; ?>">Preview</a></p>
-                    
-                    <p><a href="<?php echo base_url()."biodata/do_delete/".$d['id']; ?>">Delete</a>
-                </td>
-            </tr>
-        </tbody>
-           <?php } ?> 
-            
-                </td>
-        </table>
-        <p align="center"><a align="center" href="<?php echo base_url()."biodata/add_data/"; ?>">Tambah</a> </p>
 
-        </div>
+			<div class="title text-center">
+				<h1 class="mb-10">List Song for This Week</h1>
+			</div>
+			<div class="container">
+			<table class="table table-hover">
+	            <thread>
+	                <th >Id</th>
+	                <th >Title</th>
+	                <th>Singer</th>
+	                <th>Category</th>
+	                <th >Year</th>
+	                <th align="center">Images</th>
+	                <th >Action</th>
+	      		</thread>
+       			<tbody>
+        			<?php foreach($result as $d){ ?>
+          			<tr>
+		               <td><?php echo $d['id']; ?></td>
+		               <td><?php echo $d['judul']; ?></td>
+		               <td><?php echo $d['penyanyi']; ?></td>
+		               <td><?php echo $d['id_ktg']; ?></td>
+		               <td><?php echo $d['tahun_rilis']; ?></td>
+		               <td><img width="95" height="105"src="<?php echo base_url('assets/img/'.$d['gambar']); ?>"></td>
+                 		<td>
+                  			<p><a href="<?php echo base_url()."biodata/do_preview/".$d['id']; ?>">Preview</a></p>
+                			<p><a href="<?php echo base_url()."biodata/do_delete/".$d['id']; ?>">Delete</a>
+               			</td>
+           			</tr>
+       			</tbody> <?php } ?>
+        	</table>
+        	<?php
+	        // $links ini berasal dari fungsi pagination
+	        // Jika $links ada (data melebihi jumlah max per page), maka tampilkan
+	        if (isset($links)) {
+	            echo $links;
+	        }
+	        ?>
+
+       		<p align="center"><a align="center" href="<?php echo base_url()."biodata/do_insert/"; ?>">Tambah</a> </p>
+		</div>
 		
 			<!-- Start fact Area -->
 			<section class="fact-area relative section-gap" id="fact">
@@ -175,9 +181,10 @@
 						</div>												
 					</div>
 				</div>	
-			</section>
+			</section><br><br><br><Br>
 			<!-- end counter Area -->
 
+			
 			<!-- Start course Area -->
 			<section class="course-area section-gap" id="videos">
 				<div class="container">
