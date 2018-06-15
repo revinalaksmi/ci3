@@ -19,6 +19,16 @@
 						<label>Username</label>
 						<input type="text" class="form-control" name="username" placeholder="Username">
 					</div>
+
+					<div class="form-check"> 
+						<input class="form-check-input" type="radio" name="membership" id="goldmember" value="2" checked>
+						<label class="form-check-label" for="goldmember">Gold</label>
+					</div>
+					<div class="form-check"> 
+						<input class="form-check-input" type="radio" name="membership" id="goldmember" value="2" checked>
+						<label class="form-check-label" for="silvermember">Silver</label>
+					</div>
+
 					<div class="form-group">
 						<label>Nama Lengkap</label>
 						<input type="text" class="form-control" name="nama" placeholder="Nama Lengkap">
@@ -40,6 +50,7 @@
 				<?php echo form_close(); ?>
 			</div>
 		</div>
+
 	</div>
 </section>
 </main>

@@ -43,23 +43,27 @@ class User extends CI_Controller{
 			$this->load->view('login', $data);
 		} 
 		else {
+			// Get username
 			$username = $this->input->post('username');
+			// Get & encrypt password
 			$password = md5($this->input->post('password'));
-			$id = $this->user_model->login($username, $password);
 
-		if($id){
-			
-			$user_data = array(
-				'id' => $id,
-				'username' => $username,
-				'logged_in' => true
-			);
+			// Login user
+			$user_id = $this->user_model->login($username, $password);
 
+			if($user_id){
+				// Buat session
+				$user_data = array(
+					'user_id' => $user_id,
+					'username' => $username,
+					'logged_in' => true,
+					'level'=> $this->user_model->get_user_model($user_id)
+				);
 			$this->session->set_userdata($user_data);
 
 			$this->session->set_flashdata('user_loggedin', 'You have been login');
 
-			redirect('biodata');
+			redirect('user/dashboard');
 		} 
 		else {
 		
@@ -68,6 +72,17 @@ class User extends CI_Controller{
 		redirect('user/login');
 		}		
 			}
+	}
+
+	public function dashboard(){
+		if($this->session->userdata('logged_in')){
+			redirect('user/login');
+		}
+		$username=$this->session->userdata('username');
+
+		$data['user']=$this->user_model->get_user_details($username);
+
+		$this->load->view('dashboard',$data);
 	}
 
 
